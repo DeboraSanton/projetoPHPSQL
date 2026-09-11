@@ -1,4 +1,4 @@
-# 🛒 Projeto PHP + SQL
+#  Projeto PHP + SQL
 
 Projeto desenvolvido durante o curso de Tecnologia da Informação do SENAI, com o objetivo de praticar o desenvolvimento de aplicações utilizando **PHP**, **SQL** e integração com dados.
 
