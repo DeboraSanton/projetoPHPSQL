@@ -1,57 +1,124 @@
-#  Projeto PHP + SQL
+## Atividade - API de Catálogo de Games.
 
-Projeto desenvolvido durante o curso de Tecnologia da Informação do SENAI, com o objetivo de praticar o desenvolvimento de aplicações utilizando **PHP**, **SQL** e integração com dados.
+Esse projeto foi feito para criar uma **API de catálogo de games**, usando **PHP e PostgreSQL**.
+
+A API permite cadastrar jogos no banco de dados e depois consultar todos os jogos que foram cadastrados.
+
+#### Banco de Dados
+
+Primeiro foi criado o banco de dados chamado: `levelup`
+
+Depois, dentro desse banco, foi criada a tabela `jogos`.
+
+A tabela foi feita para guardar as principais informações de cada jogo:
+
+
+| Campo | Tipo |
+|---|---|
+| `id` | SERIAL |
+| `titulo` | VARCHAR |
+| `plataforma` | VARCHAR |
+| `genero` | VARCHAR |
+| `desenvolvedora` | VARCHAR |
+| `ano_lancamento` | INTEGER |
+| `preco` | DECIMAL |
+| `estoque` | INTEGER |
+
+
+#### O que cada campo guarda?
+
+- **id:** identifica cada jogo.
+- **titulo:** nome do jogo.
+- **plataforma:** onde o jogo pode ser jogado.
+- **genero:** tipo de jogo, como ação, corrida ou simulação.
+- **desenvolvedora:** empresa que desenvolveu o jogo.
+- **ano_lancamento:** ano em que o jogo foi lançado.
+- **preco:** preço do jogo.
+- **estoque:** quantidade de jogos disponíveis.
+
+
+## Criação da tabela
+
+Usei o seguinte comando SQL para criar a tabela:
+
+
+![alt text](image.png)
+
+Nesse primeiro print aparece o momento em que a tabela `jogos` foi criada no banco de dados.
+
+
+![alt text](image-1.png)
+
+Depois de criar a tabela, foi possível conferir os campos que foram adicionados e verificar se estava tudo certo.
 
 ---
 
-## 📚 Sobre o projeto
+## Conexão com o banco
 
-Este projeto foi desenvolvido como uma atividade prática para compreender como uma aplicação pode trabalhar com informações armazenadas em um banco de dados.
+No arquivo `conexao.php` foi feita a conexão do PHP com o banco de dados `levelup`.
 
-A proposta é utilizar o PHP para desenvolver a parte lógica da aplicação e o SQL para trabalhar com os dados.
+Essa conexão é necessária para que a API consiga enviar e receber informações do banco.
 
-O projeto também possui uma integração com uma API de consulta de CEP, permitindo buscar informações relacionadas a um endereço a partir de um CEP informado.
-
----
-
-## 🎯 Objetivos
-
-Os principais objetivos deste projeto são:
-
-- Aprender os conceitos básicos de desenvolvimento com PHP;
-- Compreender como trabalhar com dados utilizando SQL;
-- Praticar a criação e organização de arquivos de um projeto;
-- Entender como uma aplicação pode utilizar uma API externa;
-- Trabalhar com informações de produtos;
-- Praticar a organização de um projeto utilizando Git e GitHub.
+A conexão foi feita utilizando o **PDO**.
 
 ---
 
-## 🛠️ Tecnologias utilizadas
+## Cadastro dos Jogos - POST
 
-### PHP
-Utilizado para desenvolver a lógica da aplicação e processar as informações.
+Para cadastrar os jogos foi utilizado o método POST.
 
-### SQL
-Utilizado para trabalhar com dados e conceitos de banco de dados.
+No Thunder Client, foi enviado um JSON com as informações do jogo. Por exemplo:
 
-### Python
-Utilizado no arquivo `api.cep.py` para realizar a consulta de CEP através de uma API.
+![alt text](image-2.png)
 
-### API de CEP
-Utilizada para consultar informações relacionadas a um CEP.
+Depois de enviar os dados, eles são armazenados na tabela jogos.
 
-### Git e GitHub
-Utilizados para versionamento e armazenamento do projeto.
+Quando o cadastro é realizado, a API retorna uma mensagem confirmando que deu certo.
+
+{
+    "Mensagem": "Jogo cadastrado com sucesso!"
+}
+
+![alt text](image-3.png)
 
 ---
 
-## 📁 Estrutura do projeto
 
-```text
-projetoPHPSQL/
-│
-├── api.cep.py
-├── produtos.php
-├── .gitignore
-└── README.md
+## Jogos Cadastrados
+
+Depois de testar o cadastro, foram adicionados 5 jogos ao banco de dados.
+
+Assim foi possível conferir se todos os dados estavam sendo armazenados corretamente na tabela.
+
+![alt text](image-4.png)
+
+Nesse print aparecem os jogos que foram cadastrados e as informações de cada um deles.
+
+---
+
+
+## Consulta dos Jogos - GET
+Depois do cadastro, foi utilizado o método **GET** para consultar os jogos que estavam salvos no banco.
+
+A consulta utilizada foi:
+
+SELECT * FROM jogos ORDER BY titulo;
+
+O `ORDER BY titulo` foi usado para que os jogos aparecessem **em ordem alfabética pelo título**.
+
+ ![alt text](image-6.png)
+
+Nesse print aparece o teste realizado pelo Thunder Client utilizando o método GET.
+
+![alt text](image-5.png) 
+
+Nesse print aparece o resultado retornado pela API, com os jogos em ordem alfabética.
+
+---
+
+##  Conclusão
+
+Nesse projeto, foi criada uma API de catálogo de games usando **PHP e PostgreSQL**.
+
+Foi possível cadastrar os jogos usando o **POST** e consultar os jogos usando o **GET**. Também foram feitos testes com os jogos cadastrados e a consulta foi organizada em **ordem alfabética**. 
+
